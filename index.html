@@ -1,0 +1,368 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>أحلى هدية لـ روحي ✨💖</title>
+    <!-- Fonts and Tailwind CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandPink: '#ff758c',
+                        brandRose: '#ff4b2b',
+                        softPink: '#fff0f5',
+                        deepPink: '#ff1493',
+                        glowRed: '#ff0055'
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif'],
+                        kufi: ['Reem Kufi', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+
+        /* Floating Background Hearts */
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatAndRotate linear infinite;
+        }
+
+        @keyframes floatAndRotate {
+            0% {
+                transform: translateY(105vh) scale(0.4) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Glassmorphism Card Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 2px solid rgba(255, 182, 193, 0.6);
+            box-shadow: 0 15px 35px rgba(255, 20, 147, 0.15);
+        }
+
+        /* Glow Text Effect */
+        .glow-title {
+            text-shadow: 0 0 15px rgba(255, 20, 147, 0.5), 0 0 30px rgba(255, 105, 180, 0.3);
+        }
+
+        /* Pulsing Heart Animation */
+        .pulse-heart {
+            animation: pulse 1.2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+        }
+
+        /* Dodging button positioning */
+        .runaway-btn {
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffe4e1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff69b4;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="relative text-gray-800 antialiased pb-16 flex flex-col items-center">
+
+    <div id="heartContainer" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast" class="fixed top-6 z-50 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-md text-deepPink font-bold px-6 py-3 rounded-full shadow-2xl border-2 border-pink-300 opacity-0 transition-all duration-300 pointer-events-none text-center max-w-[90vw]">
+        <span id="toastMsg"></span>
+    </div>
+
+    <!-- Main Container -->
+    <main class="relative z-10 w-full max-w-xl px-4 pt-8 space-y-8">
+
+        <header class="text-center space-y-4">
+            <div class="inline-block relative">
+                <span class="text-6xl md:text-7xl pulse-heart inline-block">💖</span>
+                <span class="absolute -top-2 -right-2 text-2xl animate-bounce">✨</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black font-kufi text-deepPink glow-title tracking-wide">
+                ريـانـا 💕
+            </h1>
+            <p class="text-lg md:text-xl font-bold text-pink-700 bg-white/60 backdrop-blur-sm py-2 px-4 rounded-full inline-block border border-pink-200 shadow-sm">
+                أحلى وألطف صدفة بدنيتي كلّها 🌸✨
+            </p>
+        </header>
+
+        <section class="glass-card rounded-3xl p-6 md:p-8 text-center space-y-4 relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 text-7xl opacity-10 pointer-events-none">🌺</div>
+            <h2 class="text-2xl font-black text-pink-600 flex items-center justify-center gap-2">
+                <span>🎀</span> رسالة من القلب لقلبك <span>🎀</span>
+            </h2>
+            <p class="text-gray-700 leading-relaxed font-semibold text-base md:text-lg">
+                يا أهلاً بـ <span class="text-deepPink font-extrabold text-lg">ريانا</span> العافية والضحكة الحلوة! 
+                بحس حالي محظوظ بطريقة مش طبيعية إنك بحياتي.. وجودك ولطافتك وضحكتك بغيروا الجو كله وبيخلوا الأيام الصعبة تصير خفيفة ولطيفة بمية مرة!
+            </p>
+            <p class="text-pink-700 font-extrabold text-sm md:text-base border-t border-pink-200 pt-3">
+                إنتِ مش بس صاحبة عزيزة.. إنتِ قطعة من القلب وراحة بال دايماً! 👑✨
+            </p>
+        </section>
+
+        <section class="glass-card rounded-3xl p-6 md:p-8 space-y-6">
+            <div class="text-center space-y-1">
+                <span class="bg-pink-100 text-deepPink font-extrabold text-xs px-3 py-1 rounded-full border border-pink-300">تسلية ومداعبة 🎮</span>
+                <h3 class="text-2xl font-extrabold text-deepPink font-kufi">لعبة صغيرة لعينيكِ 🌸</h3>
+                <p class="text-xs text-gray-500 font-medium">جاوبي على الأسئلة بكل صراحة بس ها.. بدون غش! 😉</p>
+            </div>
+
+            <!-- Question 1 -->
+            <div class="bg-white/70 p-5 rounded-2xl border border-pink-200 space-y-3 shadow-sm">
+                <p class="font-bold text-gray-800 text-base md:text-lg text-center">
+                    1️⃣ مين ألطف وأحلى بنت بكل العالم بدون منازع؟ 👑
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center items-center pt-2">
+                    <button onclick="answerQ1(true)" class="w-full sm:w-auto bg-gradient-to-r from-pink-500 to-rose-500 hover:scale-105 active:scale-95 text-white font-bold py-3 px-6 rounded-2xl shadow-md transition-all">
+                        أكيد ريانا بدون أي منافسة! 💖
+                    </button>
+                    <button id="q1Runaway" onmouseover="dodgeButton('q1Runaway')" onclick="dodgeButton('q1Runaway')" class="runaway-btn w-full sm:w-auto bg-gray-200 text-gray-600 font-bold py-3 px-6 rounded-2xl transition-all">
+                        حدا ثاني 🤔
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="bg-white/70 p-5 rounded-2xl border border-pink-200 space-y-3 shadow-sm">
+                <p class="font-bold text-gray-800 text-base md:text-lg text-center">
+                    2️⃣ شو أحلى شي بالدنيا كلها؟ ✨
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <button onclick="answerQ2('riana')" class="bg-gradient-to-r from-pink-500 to-rose-500 hover:scale-105 active:scale-95 text-white font-bold py-3 px-4 rounded-2xl shadow-md transition-all text-sm md:text-base">
+                       ريانا وسوالفها الحلوة 🥰
+                    </button>
+                    <button onclick="answerQ2('sleep')" class="bg-purple-100 border border-purple-300 hover:bg-purple-200 text-purple-700 font-bold py-3 px-4 rounded-2xl shadow-sm transition-all text-sm md:text-base">
+                        تضلك نايمة يا خم النوم 😴
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="bg-white/70 p-5 rounded-2xl border border-pink-200 space-y-3 shadow-sm">
+                <p class="font-bold text-gray-800 text-base md:text-lg text-center">
+                    3️⃣ قديش بتحبيني؟ 🥺❤️
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center items-center pt-2">
+                    <button onclick="answerQ3(true)" class="w-full sm:w-auto bg-gradient-to-r from-rose-500 to-deepPink hover:scale-105 active:scale-95 text-white font-bold py-3 px-6 rounded-2xl shadow-md transition-all">
+                        أكثر مما تتخيل بكثييير! 🔥❤️
+                    </button>
+                    <button id="q3Runaway" onmouseover="dodgeButton('q3Runaway')" onclick="dodgeButton('q3Runaway')" class="runaway-btn w-full sm:w-auto bg-gray-200 text-gray-600 font-bold py-3 px-6 rounded-2xl transition-all">
+                        مش كثير 😏
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card rounded-3xl p-6 md:p-8 text-center space-y-6">
+            <div class="space-y-2">
+                <h3 class="text-2xl font-black text-deepPink font-kufi">سر صغير بقلبي لكِ 💌</h3>
+                <p class="text-sm font-semibold text-gray-600">اكبسي الزر وشوفي شو محضرلك مفاجأة!</p>
+            </div>
+
+            <!-- Secret Trigger Button -->
+            <div class="flex justify-center">
+                <button id="secretBtn" onclick="revealSecret()" class="relative group bg-gradient-to-r from-deepPink via-pink-500 to-rose-500 hover:from-rose-500 hover:to-deepPink text-white font-black text-lg py-4 px-8 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-3 border-2 border-white/50">
+                    <span id="btnIcon" class="text-2xl pulse-heart">🎁</span>
+                    <span id="btnText">اكبسي هون لاكتشاف المفاجأة ❤️</span>
+                </button>
+            </div>
+
+            <!-- Secret Message Reveal Content -->
+            <div id="secretMessage" class="hidden text-right space-y-4 bg-gradient-to-b from-pink-50 to-rose-50 p-6 md:p-8 rounded-3xl border-2 border-dashed border-pink-300 shadow-inner transform transition-all duration-700">
+                <div class="text-center mb-2">
+                    <span class="text-4xl">👑💖🌸</span>
+                </div>
+                <h4 class="text-xl font-black text-deepPink text-center font-kufi">لـ روحي.. أغلى وأطيب قلب بالدنيا كلّها!</h4>
+                <p class="text-gray-700 font-semibold leading-loose text-base">
+                    شو ما كتبت وشو ما حكيت حروف وكلام، ما بوفيكِ حقك ولا بيوصف قديش إنتِ وجودك غالي وبفرّح القلب..
+                </p>
+                <ul class="space-y-3 font-bold text-gray-800 text-sm md:text-base border-r-4 border-deepPink pr-4 py-1">
+                    <li class="flex items-center gap-2">✨ <span>إنتِ الشخص اللي دايماً بيجيب الراحة والضحكة معه وين ما يروح.</span></li>
+                    <li class="flex items-center gap-2">🌸 <span>وجودك براد على القلب ويسعدلي هالروح الحلوة والقلب الأبيَض.</span></li>
+                    <li class="flex items-center gap-2">🔥 <span>ضلك دايماً رافعة رأسك ومبسوطة، لأنك بتستاهلي أحلى وأعظم شي بالدنيا.</span></li>
+                    <li class="flex items-center gap-2">👑 <span>إنتِ التوب وبدون منافسة أبداً!</span></li>
+                </ul>
+                <div class="pt-4 border-t border-pink-200 text-center space-y-1">
+                    <p class="text-deepPink font-black text-lg">الله لا يحرمني منكِ ولا من وجودك الجميل يا رب ❤️</p>
+                    <p class="text-xs text-pink-400 font-bold">دايماً وأبداً.. مع كل الحب ✨</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs font-bold text-pink-800/70 pt-4">
+            مصممة بروح وبكل الحب مخصوص لـ <span class="underline decoration-pink-400">ريانا</span> 💖
+        </footer>
+
+    </main>
+
+    <script>
+        function initFloatingHearts() {
+            const container = document.getElementById('heartContainer');
+            const heartIcons = ['💖', '❤️', '💕', '💗', '✨', '🌸', '🌺', '✨'];
+            
+            for (let i = 0; i < 22; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 18 + 14) + 'px';
+                heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.innerText = message;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'scale-105');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'scale-105');
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        function dodgeButton(btnId) {
+            const btn = document.getElementById(btnId);
+            const x = (Math.random() - 0.5) * 220;
+            const y = (Math.random() - 0.5) * 120;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+
+            const playfulMessages = [
+                "بتقدريش تكبسي هون! 😂",
+                "وين رايحة؟ الخيار الصحيح جنبه! 😜",
+                "ممنوع تكبسي لا برضو! 💖",
+                "الزر هاد بيهرب منك بس! 🏃‍♀️"
+            ];
+            const randomMsg = playfulMessages[Math.floor(Math.random() * playfulMessages.length)];
+                showToast(randomMsg);
+        }
+
+        function answerQ1(isCorrect) {
+            if (isCorrect) {
+                fireConfetti();
+                showToast("صح 100%! ريانا هي اللطافة كلّها 👑💖");
+            }
+        }
+
+        function answerQ2(choice) {
+            if (choice === 'riana') {
+                fireConfetti();
+                showToast("يسسس! أحلى وأزكى إحساس بالكون سوالف ريانا 🥰✨");
+            } else {
+                showToast("صح النوم حلو بس مع ريانا وخشمها اهم اشي وضحكتها غير والله! 💖😴");
+            }
+        }
+
+        function answerQ3(isCorrect) {
+            if (isCorrect) {
+                fireConfetti();
+                showToast("وأنا بعزك وبحبك أضعاف أضعاف يا روحي! 🔥❤️");
+            }
+        }
+
+        function fireConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 70,
+                    spread: 60,
+                    origin: { y: 0.7 },
+                    colors: ['#ff1493', '#ff69b4', '#ff4b2b', '#ffffff']
+                });
+            }
+        }
+
+        let isRevealed = false;
+        function revealSecret() {
+            if (isRevealed) return;
+            isRevealed = true;
+
+            const btn = document.getElementById('secretBtn');
+            const btnIcon = document.getElementById('btnIcon');
+            const btnText = document.getElementById('btnText');
+            const secretMsg = document.getElementById('secretMessage');
+
+            // Button Transforms into Blooming Flower Bouquet
+            btn.className = "bg-gradient-to-r from-emerald-400 via-pink-500 to-rose-500 text-white font-black text-xl py-4 px-10 rounded-full shadow-2xl transition-all duration-700 flex items-center gap-3 border-2 border-white scale-105 pointer-events-none";
+            btnIcon.innerText = "💐🌹🌸";
+            btnText.innerText = "بوكيه ورد خاص لـ عيونك ✨";
+
+            // Reveal Container
+            secretMsg.classList.remove('hidden');
+
+            // Fire Massive Confetti Celebration
+            if (typeof confetti === 'function') {
+                const count = 200;
+                const defaults = { origin: { y: 0.7 } };
+
+                function fire(particleRatio, opts) {
+                    confetti(Object.assign({}, defaults, opts, {
+                        particleCount: Math.floor(count * particleRatio)
+                    }));
+                }
+
+                fire(0.25, { spread: 26, startVelocity: 55, colors: ['#ff1493', '#ff0055'] });
+                fire(0.2, { spread: 60, colors: ['#ffffff', '#ff69b4'] });
+                fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+                fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+                fire(0.1, { spread: 120, startVelocity: 45 });
+            }
+
+            showToast("تم فتح السر! يسعدلي هالقلب الطيب يا ريانا 🌸💖");
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initFloatingHearts();
+        });
+    </script>
+</body>
+</html>
+```
